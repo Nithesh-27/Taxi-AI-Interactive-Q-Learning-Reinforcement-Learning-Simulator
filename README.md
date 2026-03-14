@@ -208,7 +208,7 @@ This project is designed to help understand:
 
 ## 👨‍💻 Author
 
-**Nithesh Kannan**
+**Nithesh K**
 
 Machine Learning Enthusiast  
 AI / Data Science
