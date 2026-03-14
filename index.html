@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taxi AI – Q-Learning Route Optimization Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body class="dark-mode">
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="app-container">
+        <header class="glass-panel">
+            <div class="header-content">
+                <div class="title-group">
+                    <h1>Taxi AI</h1>
+                    <span class="subtitle">Q-Learning Simulator</span>
+                </div>
+                <div class="badge-group">
+                    <span class="ai-badge">Research Agent Active</span>
+                    <label class="theme-switch">
+                        <input type="checkbox" id="theme-toggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+        </header>
+
+        <main class="dashboard-grid">
+            <!-- Main Grid Panel -->
+            <section class="glass-panel main-panel">
+                <div class="panel-header">
+                    <h2>Environment View</h2>
+                    <div id="convergence-indicator" class="status-indicator">Initializing...</div>
+                </div>
+                <div class="canvas-container">
+                    <canvas id="taxi-grid"></canvas>
+                    <div id="exploration-overlay" class="grid-overlay"></div>
+                </div>
+            </section>
+
+            <!-- Control & Stats Panel -->
+            <section class="glass-panel side-panel">
+                <div class="panel-section">
+                    <h3>Controls</h3>
+                    <div class="control-group">
+                        <button id="start-btn" class="primary-btn">Start Training</button>
+                        <button id="pause-btn" class="secondary-btn" disabled>Pause</button>
+                        <button id="reset-btn" class="secondary-btn">Reset</button>
+                    </div>
+                    <div class="control-group">
+                        <label for="mode-toggle">Operation Mode:</label>
+                        <div class="toggle-container">
+                            <span>Train</span>
+                            <label class="switch">
+                                <input type="checkbox" id="mode-toggle">
+                                <span class="slider"></span>
+                            </label>
+                            <span>Test</span>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label for="speed-slider">Training Speed</label>
+                        <input type="range" id="speed-slider" min="1" max="100" value="50">
+                    </div>
+                </div>
+
+                <div class="panel-section stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-label">Episodes</span>
+                        <span id="episode-count" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Steps</span>
+                        <span id="step-count" class="stat-value">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Epsilon</span>
+                        <span id="epsilon-value" class="stat-value">1.00</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-label">Avg Reward</span>
+                        <span id="avg-reward" class="stat-value">0</span>
+                    </div>
+                </div>
+
+                <div class="panel-section">
+                    <div class="comparison-toggle">
+                        <label>Comparison Mode</label>
+                        <input type="checkbox" id="compare-mode">
+                    </div>
+                    <button id="download-btn" class="secondary-btn full-width">Download Results</button>
+                </div>
+            </section>
+
+            <!-- Visualization Panel -->
+            <section class="glass-panel full-width-panel">
+                <div class="panel-header">
+                    <h3>Performance History</h3>
+                </div>
+                <div class="chart-container">
+                    <canvas id="performance-chart"></canvas>
+                </div>
+            </section>
+
+            <!-- Explanation Panel -->
+            <section class="glass-panel full-width-panel collapsible">
+                <div class="panel-header clickable" id="explanation-header">
+                    <h3>How it Works: Reinforcement Learning</h3>
+                    <span class="chevron">▼</span>
+                </div>
+                <div class="explanation-content" id="explanation-content">
+                    <div class="explanation-grid">
+                        <div class="exp-card">
+                            <h4>What is RL?</h4>
+                            <p>Reinforcement Learning is an area of machine learning where an agent learns to make
+                                decisions by performing actions in an environment to maximize cumulative rewards.</p>
+                        </div>
+                        <div class="exp-card">
+                            <h4>The Q-Learning Algorithm</h4>
+                            <p>Q-Learning is a model-free RL algorithm that learns the value of an action in a
+                                particular state. It uses a "Q-Table" to store these values.</p>
+                        </div>
+                        <div class="exp-card">
+                            <h4>The Update Rule</h4>
+                            <div class="formula">
+                                Q(s,a) ← Q(s,a) + α [ r + γ max Q(s',a') − Q(s,a) ]
+                            </div>
+                        </div>
+                        <div class="exp-card">
+                            <h4>Exploration vs Exploitation</h4>
+                            <p>The agent uses an <strong>ε-greedy</strong> strategy: it mostly takes the best action
+                                (exploitation), but occasionally takes a random one (exploration) to discover new paths.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,5 @@
+Episode 100: Epsilon=0.010
+Episode 200: Epsilon=0.010
+Episode 300: Epsilon=0.010
+Episode 400: Epsilon=0.010
+Episode 500: Epsilon=0.010
